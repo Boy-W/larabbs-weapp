@@ -7,7 +7,7 @@
           <div v-for="topic in topics">
             <a url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
               <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                <image class="weui-media-box__thumb" src="https://cdn.learnku.com/uploads/avatars/26959_1574156920.png!/both/400x400" />
+                <image class="weui-media-box__thumb" src="https://img2.woyaogexing.com/2020/05/27/d5e84ea505144934966b9d64f14576c7!400x400.jpeg" />
               </div>
               <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                 <div class="weui-media-box__title">{{ topic.title }}</div>
@@ -28,7 +28,7 @@
     data: {
       topics: [{
         id: 1,
-        title: '测试1',
+        title: '测试2',
         body: 'larabbs 测试内容1'
       }, {
         id: 2,

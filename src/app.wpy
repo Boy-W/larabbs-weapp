@@ -8,11 +8,16 @@
 <script>
 import wepy from '@wepy/core'
 import vuex from '@wepy/x'
+import promisify from '@wepy/use-promisify'
 
 wepy.use(vuex)
+wepy.use(promisify)
 
 wepy.app({
-  onLaunch(options) {},
+  async onLaunch() {
+    const res = await wepy.wx.login() // 通过此处获取的临时登录凭证code只能使用一次，如果失效，则需要重新编译运行一次
+    console.log(res)
+  },
   methods: {}
 })
 </script>
@@ -20,7 +25,8 @@ wepy.app({
   {
     pages: [
       'pages/index',
-      'pages/user'
+      'pages/user',
+      'pages/auth/login'
     ],
     window: {
       backgroundTextStyle: 'light',
