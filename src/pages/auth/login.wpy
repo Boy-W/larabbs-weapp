@@ -53,7 +53,7 @@
 
 <script>
   import wepy from '@wepy/core'
-  import {login} from '../../api/auth'
+  import {login} from '@/api/auth'
 
   wepy.page({
     data: {
@@ -75,22 +75,22 @@
         let params = this.form
         const loginData = await wx.login()
         params.code = loginData.code
-        // const loginResponse = await login(params)
-        // console.log(loginResponse.data)
         try {
           const loginResponse = await login(params)
+          console.log(loginResponse)
           const accessToken = loginResponse.data.access_token
           const accessTokenExpiredAt = new Date().getTime() + loginResponse.data.expires_in * 1000
           wx.setStorageSync('access_token', accessToken)
           wx.setStorageSync('access_token_expired_at', accessTokenExpiredAt)
           wx.navigateBack()
         } catch (err) {
+          console.log(err.response)
           this.hasError = true
           this.errorMessage = err.response.data.message
         }
       }
     },
-    async onShow() { // 页面打开事件
+    async onShow() { // 打开事件；第一次打开登录页面时的处理
       try {
         const loginData = await wx.login() // 获取微信登录 code
         const loginResponse = await login({// 请求登录接口
@@ -103,6 +103,8 @@
         wx.setStorageSync('access_token_expired_at', accessTokenExpiredAt)
         wx.navigateBack()
       } catch (err) {
+        // this.hasError = true
+        // this.errorMessage = err.response.data.message
       }
     }
   })

@@ -1,6 +1,12 @@
-// import {request} from '@/utils/request'
-import { getRequest } from '../utils/request'
+import { request } from '@/utils/request'
 
-const login = (data) => getRequest('weapp/authorizations', 'post', data)
+const login = (data) => {
+  return request('weapp/authorizations', {
+    method: 'post',
+    data: data
+  })
+}
 
-export {login}
+export {
+  login
+}
