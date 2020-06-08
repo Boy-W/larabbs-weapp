@@ -34,7 +34,7 @@
 
       <!-- 验证码输入模态框 -->
       <modal class="modal" v-if="captchaModalShow" no-cancel bindconfirm="sendVerificationCode">
-        <div v-if="errors.captchaValue" class="weui-cells__tips error-message">{{ errors.captchaValue[0] }}</div>
+        <div v-if="errors.captchaValue" class="weui-cells__tips error-message">{{ errors.captchaValue }}</div>
         <div class="weui-cell weui-cell_input weui-cell_vcode">
           <div class="weui-cell__bd">
             <input class="weui-input" placeholder="图片验证码" v-model="captchaValue"/>
@@ -152,8 +152,8 @@
           this.phoneDisabled = true
         } catch (err) {
           // 验证码错误提示
-          this.$set(this.errors, 'captchaValue', err.response.data.message)
           this.getCaptchaCode()
+          this.$set(this.errors, 'captchaValue', err.response.data.message)
         }
       }
     }
