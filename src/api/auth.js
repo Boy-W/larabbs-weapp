@@ -25,8 +25,29 @@ const logout = (token) => {
   })
 }
 
+const getCaptcha = (phone) => {
+  return request('captchas', {
+    method: 'post',
+    data: {
+      phone: phone
+    }
+  })
+}
+
+const getVerificationCode = (key, code) => {
+  return request('verificationCodes', {
+    method: 'post',
+    data: {
+      captcha_key: key,
+      captcha_code: code
+    }
+  })
+}
+
 export {
   login,
   refresh,
-  logout
+  logout,
+  getCaptcha,
+  getVerificationCode
 }
